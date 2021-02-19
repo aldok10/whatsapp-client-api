@@ -9,12 +9,16 @@
         }
     ],
     "license": "MIT",
+    "minimum-stability":"dev",
+    "require": {
+        "php":">=7.4.0"
+    },
     "autoload": {
         "psr-4": {
             "AldoKarendra\\WhatsappClient\\": "src/"
         }
     },
-    "require-dev": {
+    "require": {
         "guzzlehttp/guzzle": "^7.0",
         "league/flysystem": "9999999-dev"
     }
