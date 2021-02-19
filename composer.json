@@ -20,8 +20,5 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^7.0"
-    },
-    "require-dev": {
-        "league/flysystem": "^2.0"
     }
 }
