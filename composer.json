@@ -1,0 +1,22 @@
+{
+    "name": "aldok10/whatsappclientapi",
+    "description": "Client API For Whatsapp Gateway Node.Js With JWT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Aldo Karendra",
+            "email": "dev.akarendra835@gmail.com"
+        }
+    ],
+    "license": "mit",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "AldoKarendra\\WhatsappClient\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "league/flysystem": "9999999-dev"
+    }
+}
