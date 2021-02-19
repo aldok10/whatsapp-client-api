@@ -22,6 +22,8 @@ $config = [
 	'base_url' => 'http://127.0.0.1:3002/api/v1/whatsapp',
 	'public_key' => 'aldo_k',
 	'secret_key' => 'mysecretpassword',
+	// 'enable_error' => true,
+	'enable_error' => false,
 ];
 
 // use Qr service
