@@ -9,7 +9,7 @@
         }
     ],
     "license": "mit",
-    "minimum-stability": "0.0.1",
+    "minimum-stability": "dev-master",
     "autoload": {
         "psr-4": {
             "AldoKarendra\\WhatsappClient\\": "src/"
