@@ -8,6 +8,15 @@
             "email": "dev.akarendra835@gmail.com"
         }
     ],
+    "keywords": [
+        "WhatsApp",
+        "WhatsAPI",
+        "JWT",
+        "Token",
+        "Chat",
+        "Integration",
+        "Nodejs"
+    ],
     "license": "MIT",
     "minimum-stability":"dev",
     "require": {
@@ -20,5 +29,10 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^7.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        }
     }
 }
