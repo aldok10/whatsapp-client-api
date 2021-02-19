@@ -8,7 +8,7 @@ Created because i don't really wanna get my hands dirty coz of using the old php
 
 #### Installation :fire:
 
-`composer require aldokarendra/whatsappclientapi`
+`composer require aldok10/whatsappclientapi`
 
 #### Example Usage :confetti_ball:
 ```php
