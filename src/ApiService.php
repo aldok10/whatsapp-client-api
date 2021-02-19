@@ -43,6 +43,11 @@ class ApiService {
      */
     public $service_name;
 
+    /**
+     * @var string
+     */
+    public $enable_error = false;
+
     public function __construct($configurations)
     {
         $this->clients = new Client([
@@ -64,20 +69,20 @@ class ApiService {
         $file = md5($this->secret_key) . "/" . sha1($this->public_key) . ".json";
         $path = "./" . $file;
 
-        $contents = "";
+        $response = "";
         $isNotExists = true;
 
         if(file_exists($path)){
             $file_handle = fopen($path, 'r');
-            $contents = fread($file_handle, filesize($path));
+            $response = fread($file_handle, filesize($path));
             fclose($file_handle);
 
-            $contents = json_decode($contents);
+            $response = json_decode($response);
             
             $isNotExists = false;
 
-            if ($contents!=="" && $contents!=='{"status":false,"message":"Username & Password Harus Diisi","data":null}') {
-                if ((bool)$contents->status === false) {
+            if ($response!=="" && $response!=='{"status":false,"message":"Username & Password Harus Diisi","data":null}') {
+                if ((bool)$response->status === false) {
                     $isNotExists = true;
                 }
             }
@@ -91,7 +96,7 @@ class ApiService {
             }
 
             try {
-                $contents = $this->clients->request(
+                $response = $this->clients->request(
                     'POST',
                     $this->base_url . '/auth',
                     [
@@ -103,18 +108,22 @@ class ApiService {
                     ]
                 )->getBody()->getContents();
             } catch (\Exception $e) {
-                $contents = $e->getResponse()->getBody()->getContents();
+                if ($this->enable_error === false ) {
+                    $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
+                } else {
+                    $response = $e->getResponse()->getBody()->getContents();
+                }
             }
 
             $file_handle = fopen($path, 'w');
-            fwrite($file_handle, $contents);
+            fwrite($file_handle, $response);
             fclose($file_handle);
 
-            $contents = json_decode($contents);
+            $response = json_decode($response);
         }
 
-        if ((bool)$contents->status === true) {
-            $this->token = $contents->data->token;
+        if ((bool)$response->status === true) {
+            $this->token = $response->data->token;
         }
 
         if ($this->token) {
@@ -138,7 +147,11 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            $response = $e->getResponse()->getBody()->getContents();
+            if ($this->enable_error === false ) {
+                $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
+            } else {
+                $response = $e->getResponse()->getBody()->getContents();
+            }
         }
         return $response;
     }
@@ -159,7 +172,11 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            $response = $e->getResponse()->getBody()->getContents();
+            if ($this->enable_error === false ) {
+                $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
+            } else {
+                $response = $e->getResponse()->getBody()->getContents();
+            }
         }
         return $response;
     }
@@ -177,7 +194,11 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            $response = $e->getResponse()->getBody()->getContents();
+            if ($this->enable_error === false ) {
+                $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
+            } else {
+                $response = $e->getResponse()->getBody()->getContents();
+            }
         }
         return $response;
     }
@@ -196,7 +217,11 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            $response = $e->getResponse()->getBody()->getContents();;
+            if ($this->enable_error === false ) {
+                $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
+            } else {
+                $response = $e->getResponse()->getBody()->getContents();
+            }
         }
         return $response;
     }

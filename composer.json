@@ -1,7 +1,7 @@
 {
     "name": "aldok10/whatsappclientapi",
     "description": "Client API For Whatsapp Gateway Node.Js With JWT",
-    "type": "package",
+    "type": "library",
     "authors": [
         {
             "name": "Aldo Karendra",
