@@ -19,7 +19,9 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
         "league/flysystem": "9999999-dev"
     }
 }
