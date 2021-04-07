@@ -10,7 +10,7 @@ class Qr extends ApiService
     public function getQr($type = 'json')
     {
         $response = $this->get(
-        	"login?type={$type}",
+        	"login?type={$type}"
         );
         return $response;
     }
