@@ -53,5 +53,8 @@ if ($response === '{"msg":"Sudah Login"}') {
 }
 ```
 
+Make Sure Node Api Is Already Run With ```node api.js```
+https://gitlab.com/aldo_k/whatsapp-node-api-with-jwt
+
 #### Contributions :ok_hand:
 Your contribution is always welcome!
