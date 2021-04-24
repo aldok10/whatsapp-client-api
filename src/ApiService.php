@@ -3,7 +3,8 @@ namespace AldoKarendra\WhatsappClient;
 
 use GuzzleHttp\Client;
 
-class ApiService {
+class ApiService
+{
 
     /**
      * Guzzle HTTP Client object
@@ -54,7 +55,7 @@ class ApiService {
             'verify' => false
         ]);
 
-        foreach ($configurations as $key => $val){
+        foreach ($configurations as $key => $val) {
             if (property_exists($this, $key)) {
                 $this->$key = $val;
             }
@@ -72,7 +73,7 @@ class ApiService {
         $response = "";
         $isNotExists = true;
 
-        if(file_exists($path)){
+        if (file_exists($path)) {
             $file_handle = fopen($path, 'r');
             $response = fread($file_handle, filesize($path));
             fclose($file_handle);
@@ -89,9 +90,7 @@ class ApiService {
         }
 
         if ($isNotExists) {
-
-            if( is_dir(md5($this->secret_key)) === false )
-            {
+            if (is_dir(md5($this->secret_key)) === false) {
                 mkdir(md5($this->secret_key), 0777, true);
             }
 
@@ -108,7 +107,7 @@ class ApiService {
                     ]
                 )->getBody()->getContents();
             } catch (\Exception $e) {
-                if ($this->enable_error === false ) {
+                if ($this->enable_error === false) {
                     $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
                 } else {
                     $response = $e->getResponse()->getBody()->getContents();
@@ -147,7 +146,7 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            if ($this->enable_error === false ) {
+            if ($this->enable_error === false) {
                 $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
             } else {
                 $response = $e->getResponse()->getBody()->getContents();
@@ -159,8 +158,8 @@ class ApiService {
     protected function post($feature, $data = [], $headers = [])
     {
         $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
-        if(!empty($headers)){
-            $this->headers = array_merge($this->headers,$headers);
+        if (!empty($headers)) {
+            $this->headers = array_merge($this->headers, $headers);
         }
         try {
             $response = $this->clients->request(
@@ -172,7 +171,7 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            if ($this->enable_error === false ) {
+            if ($this->enable_error === false) {
                 $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
             } else {
                 $response = $e->getResponse()->getBody()->getContents();
@@ -194,7 +193,7 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            if ($this->enable_error === false ) {
+            if ($this->enable_error === false) {
                 $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
             } else {
                 $response = $e->getResponse()->getBody()->getContents();
@@ -217,7 +216,7 @@ class ApiService {
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
-            if ($this->enable_error === false ) {
+            if ($this->enable_error === false) {
                 $response = '{"status":false,"message":"Akses Terlarang!","data":null}';
             } else {
                 $response = $e->getResponse()->getBody()->getContents();
@@ -225,5 +224,4 @@ class ApiService {
         }
         return $response;
     }
-
 }
